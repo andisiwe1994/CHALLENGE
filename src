@@ -1,0 +1,38 @@
+function passwordIsValid(password) {
+    var message = "";
+
+    if (password == "") {
+        message = "password should exist";
+    } else if (password.length <= 8) {
+        message = "password should be longer than 8 characters";
+    } else if (password.match(/[a-z]/g) == null) {
+        message = "password should have at least one lowercase letter";
+    } else if (password.match(/[A-Z]/g) == null) {
+        message = "password should have at least one uppercase letter";
+    } else if (password.match(/[0-9]/g) == null) {
+        message = "password should  at least have  one digit";
+    } else if (password.match(/[@#$%^&*?<>]/g) == null) {
+        message = "password should have at least one special character";
+    } else {
+        message = "password is valid";
+    }
+
+    return message;
+}
+
+let passwordIsOk = function (password) {
+    var regex2 = /([\W\w]{9,})/gi;
+    var results = password.match(regex2);
+    var message = "";
+
+    if (password == "" || password.length <= 8) {
+        message = false;
+    } else if (results !== null) {
+        message = true;
+    } else {
+        message = false;
+    }
+    return message;
+};
+
+module.exports = { passwordIsValid, passwordIsOk };
